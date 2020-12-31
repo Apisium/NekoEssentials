@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @CommandName("delwarp")
@@ -41,6 +42,6 @@ public final class DelWarpCommand extends BasicCommand {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        return args.length < 1 ? new ArrayList<>(instance.warps) : null;
+        return args.length == 1 ? new ArrayList<>(instance.warps) : Collections.emptyList();
     }
 }

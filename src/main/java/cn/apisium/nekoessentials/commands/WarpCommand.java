@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @CommandName("warp")
@@ -31,6 +32,6 @@ public final class WarpCommand extends BasicCommand {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        return args.length < 1 ? new ArrayList<>(instance.warps) : null;
+        return args.length == 1 ? new ArrayList<>(instance.warps) : Collections.emptyList();
     }
 }
