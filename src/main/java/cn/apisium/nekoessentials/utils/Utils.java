@@ -11,10 +11,16 @@ import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
 @SuppressWarnings("unused")
 public final class Utils {
-    private Utils() {
-    }
+    private static final Class<?> craftPlayerClass = ReflectionUtil.getOBCClass("entity.CraftPlayer");
+    private static final Class<?> nmsEntityPlayerClass = ReflectionUtil.getNMSClass("EntityPlayer");
+    private static final Method craftPlayerGetHandle = ReflectionUtil.getMethod(craftPlayerClass, "getHandle");
+    private static final Field nmsEntityPlayerPingField = ReflectionUtil.getField(nmsEntityPlayerClass, "ping", false);
+    private Utils() { }
 
     @SafeVarargs
     public static void loadCommands(Main main, Class<? extends BasicCommand>... commands) throws Exception {
@@ -66,5 +72,14 @@ public final class Utils {
 
     public static void recordPlayerLocation(Player player, Location loc) {
         DatabaseSingleton.INSTANCE.setPlayerData(player, "lastLocation", Serializer.serializeLocation(loc));
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    public static int getPlayerPing(final Player player) {
+        try {
+            return (int) nmsEntityPlayerPingField.get(craftPlayerGetHandle.invoke(player));
+        } catch (final Exception e) {
+            return -1;
+        }
     }
 }

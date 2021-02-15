@@ -34,11 +34,12 @@ import java.util.*;
 @Command(name = "tpcancel")
 @Command(name = "home", permission = "nekoess.home")
 @Command(name = "mute", permission = "nekoess.mute")
+@Command(name = "network")
 @Command(name = "othershome", permission = "nekoess.others")
 @Command(name = "sethome", permission = "nekoess.home")
 @Command(name = "setwarp", permission = "nekoess.setwarp")
 @Command(name = "spawn", permission = "nekoess.spawn")
-@Command(name = "status", permission = "nekoess.status")
+@Command(name = "status")
 @Command(name = "sudo", permission = "nekoess.sudo")
 @Command(name = "toggle", permission = "nekoess.toggle")
 @Command(name = "tpaall", permission = "nekoess.tpaall")
@@ -56,7 +57,6 @@ import java.util.*;
 @Permission(name = "nekoess.back", defaultValue = PermissionDefault.TRUE)
 @Permission(name = "nekoess.toggle", defaultValue = PermissionDefault.TRUE)
 @Permission(name = "nekoess.tpaall", defaultValue = PermissionDefault.TRUE)
-@Permission(name = "nekoess.status", defaultValue = PermissionDefault.TRUE)
 @Permission(name = "nekoess.disrobe", defaultValue = PermissionDefault.TRUE)
 @Permission(name = "nekoess.warp", defaultValue = PermissionDefault.TRUE)
 @Permission(name = "nekoess.others")
@@ -107,6 +107,7 @@ public final class Main extends JavaPlugin {
                     FreezeCommand.class,
                     HomeCommand.class,
                     MuteCommand.class,
+                    NetworkCommand.class,
                     OthersHomeCommand.class,
                     WarpCommand.class,
                     SetHomeCommand.class,
