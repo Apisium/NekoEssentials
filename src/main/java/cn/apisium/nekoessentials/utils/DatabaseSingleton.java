@@ -1,5 +1,6 @@
 package cn.apisium.nekoessentials.utils;
 
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.iq80.leveldb.*;
 
@@ -24,27 +25,27 @@ public class DatabaseSingleton implements DB {
         DatabaseSingleton.db = db;
     }
 
-    public byte[] getPlayerData(Player player, String key) {
+    public byte[] getPlayerData(OfflinePlayer player, String key) {
         return get(playerDataToKey(player, key));
     }
 
-    public void setPlayerData(Player player, String key, byte[] data) {
+    public void setPlayerData(OfflinePlayer player, String key, byte[] data) {
         set(playerDataToKey(player, key), data);
     }
 
-    public void setPlayerData(Player player, String key, byte[] data, WriteOptions writeOptions) {
+    public void setPlayerData(OfflinePlayer player, String key, byte[] data, WriteOptions writeOptions) {
         set(playerDataToKey(player, key), data, writeOptions);
     }
 
-    public void deletePlayerData(Player player, String key) {
+    public void deletePlayerData(OfflinePlayer player, String key) {
         delete(playerDataToKey(player, key));
     }
 
-    public void deletePlayerData(Player player, String key, WriteOptions writeOptions) {
+    public void deletePlayerData(OfflinePlayer player, String key, WriteOptions writeOptions) {
         delete(playerDataToKey(player, key), writeOptions);
     }
 
-    public String playerDataToKey(Player player, String key) {
+    public String playerDataToKey(OfflinePlayer player, String key) {
         return (player.getUniqueId().toString() + "." + key);
     }
 
