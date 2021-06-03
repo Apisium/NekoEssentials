@@ -31,6 +31,7 @@ import java.util.*;
 @Command(name = "db", permission = "nekoess.db")
 @Command(name = "delwarp", permission = "nekoess.delwarp")
 @Command(name = "disrobe", permission = "nekoess.disrobe")
+@Command(name = "forcesetblock", permission = "nekoess.forcesetblock")
 @Command(name = "tpcancel")
 @Command(name = "home", permission = "nekoess.home")
 @Command(name = "mute", permission = "nekoess.mute")
@@ -59,6 +60,7 @@ import java.util.*;
 @Permission(name = "nekoess.tpaall", defaultValue = PermissionDefault.TRUE)
 @Permission(name = "nekoess.disrobe", defaultValue = PermissionDefault.TRUE)
 @Permission(name = "nekoess.warp", defaultValue = PermissionDefault.TRUE)
+@Permission(name = "nekoess.forcesetblock")
 @Permission(name = "nekoess.others")
 @Permission(name = "nekoess.sudo.avoid")
 @Permission(name = "nekoess.immediate")
@@ -104,6 +106,7 @@ public final class Main extends JavaPlugin {
                     DbCommand.class,
                     DelWarpCommand.class,
                     DisrobeCommand.class,
+                    ForceSetBlockCommand.class,
                     FreezeCommand.class,
                     HomeCommand.class,
                     MuteCommand.class,
