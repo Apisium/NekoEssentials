@@ -1,7 +1,6 @@
 plugins {
     id 'java'
     id 'idea'
-    id 'maven-publish'
 }
 
 group 'cn.apisium.bots'
@@ -16,16 +15,6 @@ repositories {
     maven {
         name = 'sonatype'
         url = 'https://oss.sonatype.org/content/groups/public/'
-    }
-}
-
-project.afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication) {
-                from components.release
-            }
-        }
     }
 }
 
