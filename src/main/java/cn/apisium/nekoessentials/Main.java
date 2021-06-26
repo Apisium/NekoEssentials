@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
+@SuppressWarnings("deprecation")
 @Plugin(name = "NekoEssentials", version = "1.0")
 @Description("An essential plugin used in NekoCraft.")
 @Author("Shirasawa")

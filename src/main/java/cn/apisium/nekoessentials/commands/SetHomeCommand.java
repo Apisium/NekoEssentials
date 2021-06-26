@@ -15,8 +15,7 @@ public final class SetHomeCommand extends BasicCommand {
 
     @Override
     public boolean callback(CommandSender sender, String[] args) {
-        if (!(sender instanceof Player)) return false;
-        final Player p = (Player) sender;
+        if (!(sender instanceof final Player p)) return false;
         if (p.getGameMode() == GameMode.SPECTATOR) {
             p.sendMessage("§c你不能在旁观模式设置家!");
         } else {

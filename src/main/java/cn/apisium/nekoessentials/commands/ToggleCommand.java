@@ -13,23 +13,23 @@ public final class ToggleCommand extends BasicCommand {
         super(main);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public boolean callback(CommandSender sender, String[] args) {
-        if (!(sender instanceof Player)) return false;
-        final Player p = (Player) sender;
+        if (!(sender instanceof final Player p)) return false;
         switch (p.getGameMode()) {
-            case SURVIVAL:
+            case SURVIVAL -> {
                 DatabaseSingleton.INSTANCE.setPlayerData(p, "toggleLocation", Serializer.serializeLocation(p.getLocation()));
                 p.setGameMode(GameMode.SPECTATOR);
-                break;
-            case SPECTATOR:
+            }
+            case SPECTATOR -> {
                 final byte[] bytes = DatabaseSingleton.INSTANCE.getPlayerData(p, "toggleLocation");
                 if (bytes != null) {
                     DatabaseSingleton.INSTANCE.deletePlayerData(p, "toggleLocation");
                     p.teleport(Serializer.deserializeLocation(bytes));
                 }
                 p.setGameMode(GameMode.SURVIVAL);
-                break;
+            }
         }
         p.sendActionBar("§a模式切换成功!");
         return true;

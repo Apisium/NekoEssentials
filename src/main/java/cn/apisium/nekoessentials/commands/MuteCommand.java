@@ -3,13 +3,13 @@ package cn.apisium.nekoessentials.commands;
 import cn.apisium.nekoessentials.Main;
 import cn.apisium.nekoessentials.utils.DatabaseSingleton;
 import cn.apisium.nekoessentials.utils.Serializer;
+import io.papermc.paper.event.player.AsyncChatEvent;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -30,8 +30,9 @@ public final class MuteCommand extends BasicCommand implements Listener {
         main.getServer().getPluginManager().registerEvents(this, main);
     }
 
+    @SuppressWarnings("deprecation")
     @EventHandler(priority = EventPriority.LOWEST)
-    public void onChat(AsyncPlayerChatEvent e) {
+    public void onChat(AsyncChatEvent e) {
         if (instance.mutedPlayers.contains(e.getPlayer().getUniqueId().toString())) {
             e.setCancelled(true);
             e.getPlayer().sendActionBar("¡ìc·¢ËÍÊ§°Ü! ÄúÒÑ±»½ûÑÔ!");

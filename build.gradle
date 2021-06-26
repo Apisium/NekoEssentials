@@ -9,8 +9,8 @@ version '1.0-SNAPSHOT'
 repositories {
     mavenCentral()
     maven {
-        name = 'destroystokyo-repo'
-        url = 'https://repo.destroystokyo.com/repository/maven-public/'
+        name = 'papermc'
+        url = 'https://papermc.io/repo/repository/maven-public/'
     }
     maven {
         name = 'sonatype'
@@ -20,12 +20,12 @@ repositories {
 
 dependencies {
     compileOnly 'org.spigotmc:plugin-annotations:1.2.3-SNAPSHOT'
-    compileOnly 'com.destroystokyo.paper:paper-api:1.16.1-R0.1-SNAPSHOT'
+    compileOnly 'io.papermc.paper:paper-api:1.17-R0.1-SNAPSHOT'
     compileOnly 'io.netty:netty-buffer:4.1.50.Final'
 
     annotationProcessor 'org.spigotmc:plugin-annotations:1.2.3-SNAPSHOT'
 
-    compile('org.iq80.leveldb:leveldb:0.12') {
+    implementation('org.iq80.leveldb:leveldb:0.12') {
         exclude group: 'com.google.guava'
     }
 }

@@ -22,8 +22,7 @@ public final class DelWarpCommand extends BasicCommand {
 
     @Override
     public boolean callback(CommandSender sender, String[] args) {
-        if (!(sender instanceof Player) || args.length < 1) return false;
-        final Player p = (Player) sender;
+        if (!(sender instanceof final Player p) || args.length < 1) return false;
         if (DatabaseSingleton.INSTANCE.get("warp." + args[0]) == null) {
             p.sendMessage("§c该地标不存在或已被删除!");
             return false;

@@ -1,7 +1,6 @@
 package cn.apisium.nekoessentials.utils;
 
 import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
 import org.iq80.leveldb.*;
 
 import java.io.IOException;
@@ -46,7 +45,7 @@ public class DatabaseSingleton implements DB {
     }
 
     public String playerDataToKey(OfflinePlayer player, String key) {
-        return (player.getUniqueId().toString() + "." + key);
+        return (player.getUniqueId() + "." + key);
     }
 
     public byte[] get(String key) {
@@ -93,7 +92,6 @@ public class DatabaseSingleton implements DB {
         return db.get(key, options);
     }
 
-    @SuppressWarnings("NullableProblems")
     @Override
     public DBIterator iterator() {
         return db.iterator();

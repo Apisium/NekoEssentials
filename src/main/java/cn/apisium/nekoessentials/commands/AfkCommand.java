@@ -3,6 +3,7 @@ package cn.apisium.nekoessentials.commands;
 import cn.apisium.nekoessentials.Main;
 import cn.apisium.nekoessentials.utils.Pair;
 import com.destroystokyo.paper.event.player.PlayerPostRespawnEvent;
+import io.papermc.paper.event.player.AsyncChatEvent;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
@@ -65,7 +66,7 @@ public final class AfkCommand extends TargetCommand implements Listener {
     }
 
     @EventHandler
-    public void onChat(AsyncPlayerChatEvent e) {
+    public void onChat(AsyncChatEvent e) {
         renewStatus(e.getPlayer());
     }
 
@@ -92,6 +93,7 @@ public final class AfkCommand extends TargetCommand implements Listener {
         syncStatus(p, System.currentTimeMillis());
     }
 
+    @SuppressWarnings("deprecation")
     private void syncStatus(final Player p, final long time) {
         Pair<Location, Long> it = instance.afkPlayers.get(p);
         final Location loc = p.getLocation();

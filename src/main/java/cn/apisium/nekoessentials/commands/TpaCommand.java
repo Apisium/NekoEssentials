@@ -12,8 +12,7 @@ public final class TpaCommand extends BasicCommand {
 
     @Override
     public boolean callback(CommandSender sender, String[] args) {
-        if (!(sender instanceof Player) || args.length != 1) return false;
-        final Player sp = (Player) sender;
+        if (!(sender instanceof final Player sp) || args.length != 1) return false;
         final Player p = instance.getPlayer(sender, args[0]);
         if (p == null) return true;
         instance.requestTeleport(p, "  §d玩家 §f" + sp.getName() + " §d希望传送到你这里:",

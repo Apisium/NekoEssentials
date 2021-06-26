@@ -26,8 +26,7 @@ public final class SetWarpCommand extends BasicCommand {
 
     @Override
     public boolean callback(CommandSender sender, String[] args) {
-        if (!(sender instanceof Player) || args.length < 1) return false;
-        final Player p = (Player) sender;
+        if (!(sender instanceof final Player p) || args.length < 1) return false;
         DatabaseSingleton.INSTANCE.set("warp." + args[0], Serializer.serializeLocation(p.getLocation()));
         instance.warps.add(args[0]);
         try {

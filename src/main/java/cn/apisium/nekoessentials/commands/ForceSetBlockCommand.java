@@ -38,12 +38,12 @@ public final class ForceSetBlockCommand extends BasicCommand {
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (!(sender instanceof Player)) return Collections.emptyList();
         final Block block = ((Player) sender).getTargetBlockExact(6);
-        switch (args.length) {
-            case 1: return block == null ? Collections.emptyList() : Collections.singletonList(Integer.toString(block.getX()));
-            case 2: return block == null ? Collections.emptyList() : Collections.singletonList(Integer.toString(block.getY()));
-            case 3: return block == null ? Collections.emptyList() : Collections.singletonList(Integer.toString(block.getZ()));
-            case 4: return list;
-            default: return Collections.emptyList();
-        }
+        return switch (args.length) {
+            case 1 -> block == null ? Collections.emptyList() : Collections.singletonList(Integer.toString(block.getX()));
+            case 2 -> block == null ? Collections.emptyList() : Collections.singletonList(Integer.toString(block.getY()));
+            case 3 -> block == null ? Collections.emptyList() : Collections.singletonList(Integer.toString(block.getZ()));
+            case 4 -> list;
+            default -> Collections.emptyList();
+        };
     }
 }

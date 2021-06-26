@@ -14,16 +14,18 @@ public abstract class TargetCommand extends BasicCommand {
     @Override
     public boolean callback(CommandSender sender, String[] args) {
         switch (args.length) {
-            case 0:
+            case 0 -> {
                 if (!(sender instanceof Player)) return false;
                 doAction(sender, (Player) sender, false);
                 return true;
-            case 1:
+            }
+            case 1 -> {
                 if (!Utils.canTeleportOthers(sender)) return false;
                 final Player p = instance.getServer().getPlayerExact(args[0]);
                 if (p == null) sender.sendMessage(Constants.NO_SUCH_PLAYER);
                 else doAction(sender, p, true);
                 return true;
+            }
         }
         return true;
     }

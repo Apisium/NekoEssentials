@@ -22,22 +22,26 @@ public final class DbCommand extends BasicCommand {
     public boolean callback(CommandSender sender, String[] args) {
         if (args.length < 1) return false;
         switch (args[0]) {
-            case "getall": {
-                DatabaseSingleton.INSTANCE.forEach(i -> {
-                    String key = asString(i.getKey());
-                    sender.sendMessage(key + " = " + (isLocation(key) ? Serializer.deserializeLocation(i.getValue()).toString() : asString(i.getValue())));
-                });
+            case "getall" -> {
+                {
+                    DatabaseSingleton.INSTANCE.forEach(i -> {
+                        String key = asString(i.getKey());
+                        sender.sendMessage(key + " = " + (isLocation(key) ? Serializer.deserializeLocation(i.getValue()).toString() : asString(i.getValue())));
+                    });
+                }
+                return true;
             }
-            return true;
-            case "get": {
-                if (args.length < 2) return false;
-                byte[] bytes = DatabaseSingleton.INSTANCE.get(args[1].getBytes());
-                if (bytes != null)
-                    sender.sendMessage(isLocation(args[1]) ? Serializer.deserializeLocation(bytes).toString() : asString(bytes));
-                else sender.sendMessage("¡ìc" + args[1] + "is null!");
+            case "get" -> {
+                {
+                    if (args.length < 2) return false;
+                    byte[] bytes = DatabaseSingleton.INSTANCE.get(args[1].getBytes());
+                    if (bytes != null)
+                        sender.sendMessage(isLocation(args[1]) ? Serializer.deserializeLocation(bytes).toString() : asString(bytes));
+                    else sender.sendMessage("¡ìc" + args[1] + "is null!");
+                }
+                return true;
             }
-            return true;
-            case "player": {
+            case "player" -> {
                 if (args.length < 2) return false;
                 final OfflinePlayer offlinePlayer = instance.getServer().getOfflinePlayer(args[1]);
                 if (!offlinePlayer.hasPlayedBefore()) {
@@ -51,7 +55,7 @@ public final class DbCommand extends BasicCommand {
                     DatabaseSingleton.INSTANCE.filter(i -> asString(i.getKey()).startsWith(player.getUniqueId().toString())).forEach(it -> {
                         String key = asString(it.getKey()).split("\\.")[1];
                         byte[] bytes = it.getValue();
-                        String value = isLocation(key)?Serializer.deserializeLocation(bytes).toString():asString(bytes);
+                        String value = isLocation(key) ? Serializer.deserializeLocation(bytes).toString() : asString(bytes);
                         sender.sendMessage("  " + key + " = " + value);
                     });
                     return true;

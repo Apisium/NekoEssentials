@@ -1,7 +1,6 @@
 package cn.apisium.nekoessentials.commands;
 
 import cn.apisium.nekoessentials.Main;
-import cn.apisium.nekoessentials.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -27,7 +26,7 @@ public final class NetworkCommand extends BasicCommand implements Listener {
     public boolean callback(CommandSender sender, String[] args) {
         sender.sendMessage("§b连接信息:");
         map.forEach((k, v) -> sender.sendMessage(k + "§7: " + v));
-        if (sender instanceof Player) sender.sendMessage("Ping: §7" + Utils.getPlayerPing((Player) sender) + "ms");
+        if (sender instanceof Player) sender.sendMessage("Ping: §7" + ((Player) sender).getPing() + "ms");
         return true;
     }
 
